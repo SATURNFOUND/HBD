@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#21182e">
+<title>Happy Birthday Vartika 🎀</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{color:white;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#17121f;-webkit-tap-highlight-color:transparent}
+:root{--pink:#ffacd0;--cream:#fff0df}
+
+/* MOTION BACKGROUND */
+.background{position:fixed;inset:0;z-index:-5;background:linear-gradient(125deg,#17121f,#292039,#40243d,#21182e,#321d39);background-size:400% 400%;animation:bgMove 16s ease infinite}
+@keyframes bgMove{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.wave{position:absolute;width:70vw;height:70vw;border-radius:50%;pointer-events:none;opacity:.22}
+.wave.a{background:radial-gradient(circle,#d64c91,transparent 68%);top:-35%;left:-25%;animation:wA 17s ease-in-out infinite alternate}
+.wave.b{background:radial-gradient(circle,#7952cb,transparent 68%);bottom:-40%;right:-25%;animation:wB 19s ease-in-out infinite alternate}
+.wave.c{background:radial-gradient(circle,#bd598d,transparent 65%);top:30%;left:35%;animation:wC 21s ease-in-out infinite alternate}
+@keyframes wA{to{transform:translate(35vw,25vh) scale(1.2)}}
+@keyframes wB{to{transform:translate(-30vw,-20vh) scale(1.3)}}
+@keyframes wC{to{transform:translate(-25vw,20vh) scale(.8)}}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:-2;overflow:hidden}
+.particle{position:absolute;color:#ffd5e8;opacity:.6;animation:floatUp linear infinite}
+@keyframes floatUp{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+
+/* SUBTLE LIQUID GLASS */
+.glass{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018) 45%,rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 1px rgba(255,255,255,.12),0 15px 40px rgba(0,0,0,.19)}
+.screen{display:none;position:relative;width:100%;height:100dvh;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top)) 16px calc(25px + env(safe-area-inset-bottom));align-items:center;justify-content:center;flex-direction:column;text-align:center;overscroll-behavior:contain}
+.screen.active{display:flex;animation:screenIn .45s ease both}
+@keyframes screenIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{width:min(94vw,530px);padding:clamp(20px,5vw,30px);border-radius:27px;background:linear-gradient(145deg,rgba(49,35,62,.88),rgba(28,21,42,.86));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px rgba(255,255,255,.12),0 18px 45px #0004}
+h1{color:var(--cream);font-size:clamp(2rem,8vw,3.5rem);line-height:1.12;margin-bottom:15px;text-shadow:0 0 22px #ff8fbd44}
+h2{font-size:clamp(1.35rem,5vw,2.2rem);color:var(--cream);margin-bottom:14px}
+p{color:#f5dce9;line-height:1.65}
+.small{font-size:.88rem;opacity:.8;margin-top:10px}
+.emoji{font-size:3rem;margin-bottom:15px}
+button{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.3);border-radius:25px;padding:13px 24px;margin:9px 5px;color:#40263e;font-size:1rem;font-weight:750;background:linear-gradient(135deg,rgba(255,235,246,.96),rgba(207,179,255,.9));box-shadow:inset 0 1px 2px white,0 7px 20px #0003;cursor:pointer;touch-action:manipulation;transition:transform .2s}
+button:active{transform:scale(.95)}
+button:disabled{opacity:.35;cursor:not-allowed}
+.secondary{color:white;background:linear-gradient(135deg,#ffffff18,#ffffff06);border-color:#ffffff30}
+#musicControl{display:none;position:fixed;z-index:50;top:calc(12px + env(safe-area-inset-top));right:12px;margin:0;padding:10px 15px;color:white;background:linear-gradient(135deg,#ffffff20,#ffffff08)}
+
+/* VINYL */
+.turntable{width:min(86vw,345px);height:225px;margin:24px auto 15px;border-radius:25px;display:grid;place-items:center;background:linear-gradient(145deg,#513b59,#241b30);border:1px solid #d3a9c9;box-shadow:inset 0 2px 8px #ffffff22,0 16px 30px #0006;position:relative}
+.platter{width:185px;height:185px;border-radius:50%;display:grid;place-items:center;border:7px solid #100e13;background:repeating-radial-gradient(circle,#17151b 0 2px,#302a34 3px 4px,#111 5px 7px)}
+.platter.playing{animation:spin 2.5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.platterLabel{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#ffe0ec,#b76ca8);color:#35172f;font-weight:800;font-size:13px}
+.tonearm{position:absolute;width:95px;height:7px;right:15px;top:34px;background:linear-gradient(white,#a9a0ad);border-radius:10px;transform-origin:90% 50%;transform:rotate(-32deg);transition:1s}
+.tonearm:after{content:"";position:absolute;right:-3px;bottom:-5px;width:17px;height:15px;background:#bca9bd;border-radius:4px}
+.tonearm.playing{transform:rotate(8deg)}
+.record{width:112px;height:112px;border-radius:50%;margin:15px auto;border:4px solid #080808;position:relative;touch-action:none;cursor:grab;box-shadow:0 10px 25px #0008;background:repeating-radial-gradient(circle,#151515 0 2px,#333 3px,#111 5px)}
+.record:after{content:"♡";position:absolute;width:37px;height:37px;border-radius:50%;background:#d978aa;color:#35152b;display:grid;place-items:center;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20px}
+.progress{width:min(85vw,300px);height:5px;background:#ffffff35;border-radius:20px;margin:12px auto;overflow:hidden}
+.progressFill{height:100%;width:0;background:#ffacd0}
+
+/* CAKE */
+.cakeArea{width:min(100%,360px);height:270px;position:relative;margin:28px auto 12px}
+.cake{position:absolute;width:min(82vw,300px);height:155px;left:50%;bottom:15px;transform:translateX(-50%)}
+.candles{position:absolute;top:-45px;left:12%;right:12%;height:52px;display:flex;align-items:flex-end;justify-content:space-between;z-index:10}
+.candle{position:relative;flex:0 0 13px;width:13px;height:47px;border-radius:5px;background:repeating-linear-gradient(45deg,#fff3df 0 7px,#f28eb6 7px 13px);border:1px solid #f9d6dc;cursor:pointer;transform-origin:bottom center;touch-action:manipulation}
+.flame{position:absolute;top:-20px;left:1px;width:10px;height:17px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 50% 70%,#fff5a4 0 15%,#ffca40 40%,#ff792d 80%);box-shadow:0 0 9px #ffbd39,0 0 20px #ff9d30;animation:flicker .45s ease-in-out infinite alternate}
+@keyframes flicker{from{transform:rotate(-5deg) scale(1)}to{transform:rotate(5deg) scale(.82,1.12)}}
+.candle.blown{animation:candleBlow .4s ease forwards}
+@keyframes candleBlow{35%{transform:rotate(15deg) scale(.8)}100%{transform:rotate(0) scale(1)}}
+.smoke{position:absolute;top:-27px;left:0;color:#ddd;opacity:0;pointer-events:none;font-size:15px}
+.smoke.show{animation:smokeRise 1s ease forwards}
+@keyframes smokeRise{0%{opacity:.8;transform:translateY(0) scale(.5)}100%{opacity:0;transform:translateY(-35px) scale(1.8)}}
+.cakeSide{position:absolute;left:0;right:0;bottom:0;height:120px;border-radius:25px 25px 42px 42px;background:linear-gradient(90deg,#a65b32,#e9a66c 25%,#f2c18a 50%,#d98c52 78%,#98502f);border:3px solid #c98250;box-shadow:inset 0 -12px #99512f,inset 0 8px 10px #ffe1b0aa,0 15px 20px #0004;overflow:hidden}
+.cakeSide:before{content:"";position:absolute;left:0;right:0;top:39px;height:15px;background:linear-gradient(#fff0d0,#d99a60);box-shadow:0 0 6px #fff1d0}
+.cakeSide:after{content:"";position:absolute;left:0;right:0;bottom:18px;height:9px;background:#f6d6a2;opacity:.6}
+.cakeTop{position:absolute;left:-3px;right:-3px;top:0;height:70px;border-radius:50%;background:linear-gradient(180deg,#fff4d8,#f7dba7 75%,#e9b879);border:3px solid #f4d29f;box-shadow:inset 0 -8px #e9b77e,0 5px 10px #0002;z-index:2}
+.dripLine{position:absolute;z-index:3;top:52px;left:7px;right:7px;height:27px;background:#b96b37;clip-path:polygon(0 0,100% 0,100% 55%,94% 55%,91% 100%,85% 100%,82% 50%,72% 50%,69% 90%,63% 90%,61% 50%,49% 50%,46% 100%,40% 100%,37% 55%,26% 55%,23% 90%,17% 90%,14% 50%,0 50%)}
+.creamDots{position:absolute;z-index:4;left:14px;right:14px;top:64px;display:flex;justify-content:space-between}
+.creamDots span{width:15px;height:15px;border-radius:50%;background:#fff0cf;box-shadow:inset 0 -3px #e7b67e}
+.cherry{position:absolute;z-index:5;top:35px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#ffb0a3,#b81f45 65%,#67112d);box-shadow:inset -3px -3px 3px #5a102b}
+.cherry.one{left:28%}.cherry.two{left:47%}.cherry.three{left:69%}
+.knife{position:absolute;z-index:20;left:50%;top:-12px;font-size:42px;opacity:0;pointer-events:none}
+.cakeArea.cutting .knife{animation:knifeCut .9s ease forwards}
+@keyframes knifeCut{0%{opacity:0;transform:translate(-50%,-10px) rotate(-35deg)}35%{opacity:1;transform:translate(-50%,120px) rotate(10deg)}70%{opacity:1;transform:translate(-50%,145px) rotate(10deg)}100%{opacity:0;transform:translate(-50%,165px) rotate(20deg)}}
+.cakeArea.cut .cake{animation:cakeCutPieces .8s ease forwards}
+@keyframes cakeCutPieces{0%{transform:translateX(-50%)}100%{transform:translateX(-50%) scaleX(.94)}}
+.cakeArea.cut .cakeSide:after{content:"";position:absolute;top:0;bottom:0;left:50%;width:4px;height:100%;background:#8d492e;transform:rotate(8deg)}
+
+/* MAIN CHARACTER */
+.revealImage{width:min(75vw,300px);max-height:290px;object-fit:contain;border-radius:18px;margin:15px auto;border:3px solid #ffd3e7;display:block}
+.revealBox{display:none;animation:revealPop .8s cubic-bezier(.2,.8,.2,1) both}
+.revealBox.show{display:block}
+@keyframes revealPop{0%{opacity:0;transform:scale(.25) rotate(-12deg)}65%{opacity:1;transform:scale(1.08) rotate(3deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+
+/* MEMORY MATCH */
+.gameGrid{display:grid;grid-template-columns:repeat(4,minmax(52px,72px));gap:10px;margin:20px auto;justify-content:center}
+.memoryCard{height:76px;perspective:650px;cursor:pointer}
+.memoryInner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.memoryCard.flipped .memoryInner,.memoryCard.matched .memoryInner{transform:rotateY(180deg)}
+.memoryFace{position:absolute;inset:0;border-radius:13px;display:grid;place-items:center;backface-visibility:hidden;border:1px solid #e6a6cc}
+.memoryBack{background:linear-gradient(145deg,#71446e,#3d294d);font-size:1.8rem}
+.memoryFront{background:linear-gradient(145deg,#ffe0ed,#c9a5ff);color:#452440;font-size:1.9rem;transform:rotateY(180deg)}
+.memoryCard.matched .memoryFront{animation:matchPop .45s ease}
+@keyframes matchPop{50%{transform:rotateY(180deg) scale(1.15)}}
+.memoryCard.wrong{animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* SCRATCH */
+.scratchWrap{position:relative;width:min(75vw,300px);height:390px;margin:20px auto;overflow:hidden;border-radius:5px;touch-action:none;box-shadow:0 12px 30px #0005}
+.scratchPhoto{position:absolute;inset:0;background:#fff2e5;padding:10px 10px 20px}
+.scratchPhoto img{width:100%;height:315px;object-fit:cover;display:block}
+.scratchPhoto p{color:#573b4b;margin-top:12px;font-size:.85rem}
+#scratchCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+
+/* KEY GAME */
+.lockGrid{display:grid;grid-template-columns:repeat(3,75px);gap:12px;justify-content:center;margin:25px auto}
+.lockTile{height:75px;border-radius:15px;background:linear-gradient(145deg,#71446e,#3d294d);border:1px solid #e6a6cc;color:white;font-size:1.8rem;display:grid;place-items:center;cursor:pointer;transition:transform .3s,background .3s}
+.lockTile.wrong{animation:shake .35s ease}
+.lockTile.correct{background:linear-gradient(145deg,#e8a8d0,#bd8bda);animation:keyUnlock .7s ease}
+@keyframes keyUnlock{0%{transform:rotateY(0) scale(1)}50%{transform:rotateY(180deg) scale(1.2)}100%{transform:rotateY(360deg) scale(1)}}
+
+/* ENVELOPE AND LETTER */
+.envelope{width:230px;height:150px;position:relative;background:#eaa6c7;border-radius:8px;margin:35px auto;cursor:pointer;box-shadow:0 10px 25px #0005}
+.envelope:before{content:"";position:absolute;inset:0;background:#ffd0e5;clip-path:polygon(0 0,50% 58%,100% 0);z-index:2}
+.envelope:after{content:"💌";position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:2.5rem;z-index:3}
+.envelope.open{animation:envelopeOpen .65s ease forwards}
+@keyframes envelopeOpen{50%{transform:translateY(-15px) rotateX(25deg)}100%{transform:translateY(20px) scale(.8);opacity:0}}
+.letter{display:none;max-width:520px;width:100%;padding:24px;background:#fff0df;color:#493143;border-radius:15px;text-align:left;line-height:1.8;box-shadow:0 10px 30px #0005;animation:letterReveal .7s ease both}
+.letter h2{color:#74435f;font-size:1.5rem;margin-bottom:14px}
+.letter p{color:#493143;line-height:1.85;font-size:.96rem}
+@keyframes letterReveal{from{opacity:0;transform:translateY(25px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* EMOJI EXPLOSION */
+#burstLayer{position:fixed;inset:0;z-index:200;pointer-events:none;overflow:hidden}
+.burstEmoji{position:absolute;left:50%;top:50%;font-size:var(--size);animation:explode var(--duration) cubic-bezier(.12,.7,.25,1) forwards}
+@keyframes explode{0%{opacity:0;transform:translate(-50%,-50%) scale(.15) rotate(0)}12%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(var(--scale)) rotate(var(--rotate))}}
+
+@media(max-width:420px){
+ .screen{padding-left:12px;padding-right:12px}
+ .card{padding:21px 14px}
+ .cakeArea{transform:scale(.91);transform-origin:top center;margin-bottom:-5px}
+ .gameGrid{gap:8px}.memoryCard{height:68px}
+}
+@media(max-height:700px){
+ .screen{justify-content:flex-start;padding-top:65px}
+ .cakeArea{transform:scale(.82);transform-origin:top center;margin-bottom:-35px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+
+<body>
+<div class="background"><div class="wave a"></div><div class="wave b"></div><div class="wave c"></div></div>
+<div id="particles"></div>
+<div id="burstLayer"></div>
+<button id="musicControl" onclick="toggleMusic()">♫ Pause</button>
+<audio id="birthdayMusic" src="assets/Song.mp3" preload="auto"></audio>
+
+<!-- 1 VINYL -->
+<section class="screen active" id="screen1">
+ <div class="card">
+  <div class="emoji">🎧</div>
+  <h1>Hey Vartika!</h1>
+  <p>Before we begin, I have something for you.</p>
+  <p class="small">Drag the record onto the turntable to start the music.</p>
+  <div class="turntable" id="turntable">
+   <div class="platter" id="platter"><div class="platterLabel">SIDE A ♡</div></div>
+   <div class="tonearm" id="tonearm"></div>
+  </div>
+  <div class="record" id="record"></div>
+  <p id="vinylStatus" class="small">Waiting for the DJ... 🎀</p>
+  <div class="progress"><div class="progressFill" id="musicProgress"></div></div>
+  <p id="musicTime" class="small">00:00 / 00:00</p>
+  <button id="vinylNext" disabled onclick="showScreen(2)">Let's Go ✨</button>
+ </div>
+</section>
+
+<!-- 2 QUESTIONS -->
+<section class="screen" id="screen2">
+ <div class="card">
+  <div class="emoji">🧐</div>
+  <h1>Before we continue...</h1>
+  <h2 id="questionText">Do you like surprises?</h2>
+  <p id="questionFeedback">Be honest! 👀</p>
+  <button onclick="answerQuestion(true)">YES!</button>
+  <button class="secondary" onclick="answerQuestion(false)">NO</button>
+ </div>
+</section>
+
+<!-- 3 BIRTHDAY -->
+<section class="screen" id="screen3">
+ <div class="emoji">🎀🎂🎀</div>
+ <h1>Happy Birthday Vartika!</h1>
+ <p>A little website, a little effort, and lots of birthday wishes.</p>
+ <p>Today is all about you. Enjoy your special day! 💗</p>
+ <button onclick="showScreen(4)">Let's Cut the Cake 🎂</button>
+</section>
+
+<!-- 4 CAKE -->
+<section class="screen" id="screen4">
+ <div class="card">
+  <div class="emoji">🎂</div>
+  <h1>Make a Wish!</h1>
+  <p>Tap all five candles to blow them out.</p>
+  <div class="cakeArea" id="cakeArea">
+   <div class="knife">🔪</div>
+   <div class="cake" id="cake">
+    <div class="candles" id="candles">
+     <div class="candle" onclick="blowCandle(this)"><span class="flame"></span><span class="smoke">〰</span></div>
+     <div class="candle" onclick="blowCandle(this)"><span class="flame"></span><span class="smoke">〰</span></div>
+     <div class="candle" onclick="blowCandle(this)"><span class="flame"></span><span class="smoke">〰</span></div>
+     <div class="candle" onclick="blowCandle(this)"><span class="flame"></span><span class="smoke">〰</span></div>
+     <div class="candle" onclick="blowCandle(this)"><span class="flame"></span><span class="smoke">〰</span></div>
+    </div>
+    <div class="cakeSide"></div>
+    <div class="cakeTop"></div>
+    <div class="dripLine"></div>
+    <div class="creamDots"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="cherry one"></div><div class="cherry two"></div><div class="cherry three"></div>
+   </div>
+  </div>
+  <p id="cakeStatus">5 candles still glowing! 🕯️</p>
+  <button id="cutCake" disabled onclick="cutCake()">Cut the Cake! 🔪</button>
+  <button id="cakeNext" style="display:none" onclick="showScreen(5)">Continue 💗</button>
+ </div>
+</section>
+
+<!-- 5 MAIN CHARACTER -->
+<section class="screen" id="screen5">
+ <div class="card">
+  <div class="emoji">🐱</div>
+  <h1>One Important Thing...</h1>
+  <p>Guess who's the main character today?</p>
+  <button id="revealButton" onclick="revealMeme()">REVEAL ME! 🎀</button>
+  <div class="revealBox" id="revealBox">
+   <img src="assets/meme.jpg" class="revealImage" alt="Birthday meme">
+   <h2>YOUUU! 😭💗</h2>
+   <button onclick="showScreen(6)">Next Surprise →</button>
+  </div>
+ </div>
+</section>
+
+<!-- 6 MEMORY GAME -->
+<section class="screen" id="screen6">
+ <div class="card">
+  <div class="emoji">🧩</div>
+  <h1>Memory Match!</h1>
+  <p>Find all four matching pairs to unlock the next surprise.</p>
+  <div class="gameGrid" id="memoryGrid"></div>
+  <p id="memoryStatus">0 / 4 pairs found</p>
+  <button id="memoryNext" disabled onclick="showScreen(7)">Next Surprise →</button>
+ </div>
+</section>
+
+<!-- 7 SCRATCH -->
+<section class="screen" id="screen7">
+ <div class="card">
+  <div class="emoji">🌷</div>
+  <h1>A Little Memory</h1>
+  <p>Scratch the card to reveal your photo!</p>
+  <div class="scratchWrap" id="scratchWrap">
+   <div class="scratchPhoto">
+    <img src="assets/her.jpg" alt="Vartika">
+    <p>Stay just as cute, sweet and lovely, always! 🌷</p>
+   </div>
+   <canvas id="scratchCanvas" width="600" height="780"></canvas>
+  </div>
+  <p id="scratchStatus" class="small">Scratch to reveal 💗</p>
+  <button id="photoNext" disabled onclick="showScreen(8)">Continue →</button>
+ </div>
+</section>
+
+<!-- 8 KEY GAME -->
+<section class="screen" id="screen8">
+ <div class="card">
+  <div class="emoji">🔐</div>
+  <h1>One Last Challenge!</h1>
+  <p>Find the hidden key to unlock your birthday letter.</p>
+  <p class="small">Tap the boxes. One of them has the key! 🗝️</p>
+  <div class="lockGrid" id="lockGrid"></div>
+  <p id="lockStatus">Find the key! 👀</p>
+  <button id="letterNext" disabled onclick="showScreen(9)">Unlock Letter 💌</button>
+ </div>
+</section>
+
+<!-- 9 LETTER -->
+<section class="screen" id="screen9">
+ <div class="card">
+  <div class="emoji">💌</div>
+  <h1>A Letter from Atharv</h1>
+  <p>There's something waiting inside this envelope.</p>
+  <div class="envelope" id="envelope" onclick="openLetter()"></div>
+  <p id="envelopeHint">Tap the envelope to open it.</p>
+
+  <div class="letter" id="letter">
+   <h2>Happy Birthdayyy! ❤️🎀</h2>
+   <p>
+    I hope aapka aaj ka din aapki tarah hi beautiful ho. May you always keep smiling, achieve everything you dream of and get all the happiness you deserve. Life mein chahe kitni bhi ups and downs aayein, I hope you never lose that smile of yours.
+    <br><br>
+    Thank you for being such a wonderful friend. Stay the way you are, keep annoying people, keep laughing and keep making memories. 😂
+    <br><br>
+    And thank-you So Much for always being by my side, I'm glad to have a friend like you... Btw you better smile after all this nhi to... Pta nhi 😂 ik yeh sab cringe sa lg rha hoga but aap yahan nhi ho isiliye yehi bna diya maine  😭😭
+    <br><br>
+    Wishing you lots of love, happiness and success. Have the best birthday! Once again, Happiest Birthday! ❤️✨
+   </p>
+  </div>
+  <button id="letterContinue" style="display:none" onclick="showScreen(10)">One Last Thing →</button>
+ </div>
+</section>
+
+<!-- 10 SMILE -->
+<section class="screen" id="screen10">
+ <div class="card">
+  <div class="emoji">🥺</div>
+  <h1>One Last Question...</h1>
+  <h2>Did this bring a smile to your face?</h2>
+  <p id="smileMessage">Tell me honestly! 💗</p>
+  <button id="yesSmile" onclick="smileYes()">YES! 💗</button>
+  <button id="noSmile" class="secondary" onclick="smileNo()">NO 🙄</button>
+ </div>
+</section>
+
+<!-- 11 FINAL -->
+<section class="screen" id="screen11">
+ <div class="emoji">🥳🎉💗</div>
+ <h1 style="font-size:clamp(3rem,12vw,5rem)">YAAAYYYYY!</h1>
+ <h2>Mission Accomplished!</h2>
+ <p>I hope this little surprise made your day a little more special.</p>
+ <h1>Happy Birthday Vartika! 🎀</h1>
+ <p>Made with ♡ by Atharv</p>
+ <button onclick="replay()">Replay Everything ↻</button>
+</section>
+
+<script>
+/* BACKGROUND */
+const particleBox=document.getElementById("particles");
+const symbols=["✦","✧","♡","⋆","·"];
+for(let i=0;i<30;i++){
+ const p=document.createElement("span");
+ p.className="particle";
+ p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+ p.style.left=Math.random()*100+"%";
+ p.style.fontSize=(10+Math.random()*17)+"px";
+ p.style.animationDuration=(10+Math.random()*18)+"s";
+ p.style.animationDelay=(-Math.random()*20)+"s";
+ particleBox.appendChild(p);
+}
+
+/* NAVIGATION */
+function showScreen(n){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById("screen"+n).classList.add("active");
+ if(n===7&&!scratchStarted)initScratch();
+ if(n===8&&!lockStarted)initLockGame();
+}
+
+/* EMOJI EXPLOSION */
+function poof(emojis=["💗","✨","🎀","🌷","🥳"],amount=55){
+ const layer=document.getElementById("burstLayer");
+ const cx=window.innerWidth/2,cy=window.innerHeight/2;
+ for(let i=0;i<amount;i++){
+  const el=document.createElement("span");
+  el.className="burstEmoji";
+  el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+  const angle=Math.random()*Math.PI*2;
+  const distance=100+Math.random()*Math.max(window.innerWidth,window.innerHeight)*.65;
+  el.style.left=cx+"px";el.style.top=cy+"px";
+  el.style.setProperty("--x",Math.cos(angle)*distance+"px");
+  el.style.setProperty("--y",Math.sin(angle)*distance+"px");
+  el.style.setProperty("--size",(17+Math.random()*25)+"px");
+  el.style.setProperty("--scale",(.5+Math.random()*1.3));
+  el.style.setProperty("--rotate",(Math.random()*900-450)+"deg");
+  el.style.setProperty("--duration",(1.1+Math.random()*.9)+"s");
+  layer.appendChild(el);
+  setTimeout(()=>el.remove(),2200);
+ }
+}
+
+/* MUSIC */
+const audio=document.getElementById("birthdayMusic");
+const record=document.getElementById("record");
+const turntable=document.getElementById("turntable");
+const platter=document.getElementById("platter");
+const tonearm=document.getElementById("tonearm");
+const musicControl=document.getElementById("musicControl");
+let musicStarted=false,dragging=false,offsetX=0,offsetY=0;
+function fmt(t){
+ if(!Number.isFinite(t))return"00:00";
+ return String(Math.floor(t/60)).padStart(2,"0")+":"+String(Math.floor(t%60)).padStart(2,"0");
+}
+function updateMusic(){
+ const duration=audio.duration||0;
+ document.getElementById("musicProgress").style.width=(duration?audio.currentTime/duration*100:0)+"%";
+ document.getElementById("musicTime").textContent=fmt(audio.currentTime||0)+" / "+fmt(duration);
+ musicControl.textContent=audio.paused?"♫ Play":"♫ Pause";
+ platter.classList.toggle("playing",musicStarted&&!audio.paused);
+ tonearm.classList.toggle("playing",musicStarted&&!audio.paused);
+ document.getElementById("vinylStatus").textContent=audio.paused?"Music paused ⏸️":"Now Playing ♫";
+}
+audio.addEventListener("timeupdate",updateMusic);
+audio.addEventListener("loadedmetadata",updateMusic);
+audio.addEventListener("play",updateMusic);
+audio.addEventListener("pause",updateMusic);
+audio.addEventListener("ended",updateMusic);
+async function startMusic(){
+ try{
+  await audio.play();
+  musicStarted=true;
+  musicControl.style.display="block";
+  document.getElementById("vinylNext").disabled=false;
+  record.style.display="none";
+  updateMusic();
+  poof(["🎵","💗","✨"],20);
+ }catch(e){document.getElementById("vinylStatus").textContent="Tap the record again to play."}
+}
+function toggleMusic(){
+ if(audio.paused)audio.play().catch(()=>{});
+ else audio.pause();
+}
+record.addEventListener("pointerdown",e=>{
+ if(musicStarted)return;
+ dragging=true;record.setPointerCapture(e.pointerId);
+ const r=record.getBoundingClientRect();
+ offsetX=e.clientX-r.left;offsetY=e.clientY-r.top;
+});
+record.addEventListener("pointermove",e=>{
+ if(!dragging)return;
+ record.style.position="fixed";
+ record.style.left=(e.clientX-offsetX)+"px";
+ record.style.top=(e.clientY-offsetY)+"px";
+ record.style.margin="0";record.style.zIndex="60";
+});
+record.addEventListener("pointerup",e=>{
+ if(!dragging)return;
+ dragging=false;
+ const r=turntable.getBoundingClientRect();
+ if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)startMusic();
+ else record.removeAttribute("style");
+});
+
+/* QUESTIONS */
+const questions=["Do you like surprises?","Do you think today is a special day?","Are you ready for something made just for you?"];
+let questionIndex=0;
+function answerQuestion(yes){
+ if(!yes){document.getElementById("questionFeedback").textContent="Wrong answer! Try again 😂";return}
+ questionIndex++;
+ if(questionIndex<questions.length){
+  document.getElementById("questionText").textContent=questions[questionIndex];
+  document.getElementById("questionFeedback").textContent="Good answer! Next question... 👀";
+  poof(["✨","💗"],15);
+ }else{poof(["🎀","💗","✨"],35);setTimeout(()=>showScreen(3),500)}
+}
+
+/* CANDLES */
+let candlesLeft=5;
+function blowCandle(candle){
+ if(candle.classList.contains("blown"))return;
+ candle.classList.add("blown");
+ const flame=candle.querySelector(".flame");
+ const smoke=candle.querySelector(".smoke");
+ if(flame)flame.remove();
+ smoke.classList.add("show");
+ poof(["💨","✨"],9);
+ candlesLeft--;
+ document.getElementById("cakeStatus").textContent=candlesLeft+" candles still glowing! 🕯️";
+ if(candlesLeft===0){
+  document.getElementById("cakeStatus").textContent="All candles are out! Make a wish! ✨";
+  document.getElementById("cutCake").disabled=false;
+  poof(["🎂","💗","✨","🎉"],55);
+ }
+}
+let cakeCut=false;
+function cutCake(){
+ if(cakeCut)return;
+ cakeCut=true;
+ const area=document.getElementById("cakeArea");
+ area.classList.add("cutting");
+ document.getElementById("cutCake").disabled=true;
+ document.getElementById("cakeStatus").textContent="Here comes the cake cut! 🎂";
+ setTimeout(()=>{
+  area.classList.add("cut");
+  document.getElementById("cakeStatus").textContent="CAKE CUT! Happy Birthday! 🎉";
+  poof(["🎉","💗","🎂","✨","🍒"],75);
+  document.getElementById("cutCake").style.display="none";
+  document.getElementById("cakeNext").style.display="inline-block";
+ },850);
+}
+
+/* MAIN CHARACTER */
+let memeRevealed=false;
+function revealMeme(){
+ if(memeRevealed)return;
+ memeRevealed=true;
+ document.getElementById("revealButton").style.display="none";
+ poof(["🐱","💗","🎀","✨","🥳"],70);
+ setTimeout(()=>document.getElementById("revealBox").classList.add("show"),450);
+}
+
+/* MEMORY GAME */
+const memorySymbols=["🎀","🎂","🌷","💗"];
+let firstCard=null,secondCard=null,lockBoard=false,matchedPairs=0;
+function createMemoryGame(){
+ const grid=document.getElementById("memoryGrid");
+ grid.innerHTML="";
+ firstCard=null;secondCard=null;lockBoard=false;matchedPairs=0;
+ document.getElementById("memoryStatus").textContent="0 / 4 pairs found";
+ document.getElementById("memoryNext").disabled=true;
+ [...memorySymbols,...memorySymbols].sort(()=>Math.random()-.5).forEach(symbol=>{
+  const card=document.createElement("div");
+  card.className="memoryCard";
+  card.innerHTML=`<div class="memoryInner"><div class="memoryFace memoryBack">?</div><div class="memoryFace memoryFront">${symbol}</div></div>`;
+  card.dataset.symbol=symbol;
+  card.addEventListener("click",()=>flipCard(card));
+  grid.appendChild(card);
+ });
+}
+function flipCard(card){
+ if(lockBoard||card.classList.contains("matched")||card===firstCard||card.classList.contains("flipped"))return;
+ card.classList.add("flipped");
+ if(!firstCard){firstCard=card;return}
+ secondCard=card;lockBoard=true;
+ if(firstCard.dataset.symbol===secondCard.dataset.symbol){
+  firstCard.classList.add("matched");secondCard.classList.add("matched");
+  matchedPairs++;
+  document.getElementById("memoryStatus").textContent=matchedPairs+" / 4 pairs found";
+  firstCard=null;secondCard=null;lockBoard=false;
+  poof(["💗","✨"],12);
+  if(matchedPairs===4){
+   document.getElementById("memoryStatus").textContent="You did it! All pairs matched! 🎉";
+   document.getElementById("memoryNext").disabled=false;
+   poof(["🎉","🎀","💗","✨"],65);
+  }
+ }else{
+  firstCard.classList.add("wrong");secondCard.classList.add("wrong");
+  setTimeout(()=>{
+   firstCard.classList.remove("flipped","wrong");
+   secondCard.classList.remove("flipped","wrong");
+   firstCard=null;secondCard=null;lockBoard=false;
+  },850);
+ }
+}
+createMemoryGame();
+
+/* SCRATCH */
+let scratchStarted=false,scratching=false,scratchMoves=0;
+function initScratch(){
+ if(scratchStarted)return;
+ scratchStarted=true;
+ const canvas=document.getElementById("scratchCanvas");
+ const ctx=canvas.getContext("2d");
+ const grad=ctx.createLinearGradient(0,0,600,780);
+ grad.addColorStop(0,"#f7c8df");grad.addColorStop(.5,"#d9a6d2");grad.addColorStop(1,"#f5c8df");
+ ctx.fillStyle=grad;ctx.fillRect(0,0,600,780);
+ ctx.fillStyle="#46283e";ctx.textAlign="center";
+ ctx.font="bold 43px system-ui";ctx.fillText("SCRATCH ME!",300,360);
+ ctx.font="60px Arial";ctx.fillText("♡",300,445);
+ function checkScratch(){
+  const data=ctx.getImageData(0,0,600,780).data;
+  let clear=0;
+  for(let i=3;i<data.length;i+=16)if(data[i]===0)clear++;
+  if(clear/(data.length/16)>.4){
+   canvas.style.transition="opacity .65s";canvas.style.opacity="0";
+   setTimeout(()=>canvas.style.display="none",700);
+   document.getElementById("scratchStatus").textContent="Surprise revealed! 🌷";
+   document.getElementById("photoNext").disabled=false;
+   poof(["🌷","💗","✨"],45);
+  }
+ }
+ function scratch(e){
+  if(!scratching)return;
+  const r=canvas.getBoundingClientRect();
+  const x=(e.clientX-r.left)*canvas.width/r.width;
+  const y=(e.clientY-r.top)*canvas.height/r.height;
+  ctx.globalCompositeOperation="destination-out";
+  ctx.beginPath();ctx.arc(x,y,42,0,Math.PI*2);ctx.fill();
+  scratchMoves++;
+  if(scratchMoves%8===0)checkScratch();
+ }
+ canvas.addEventListener("pointerdown",e=>{scratching=true;canvas.setPointerCapture(e.pointerId);scratch(e)});
+ canvas.addEventListener("pointermove",scratch);
+ canvas.addEventListener("pointerup",()=>scratching=false);
+ canvas.addEventListener("pointercancel",()=>scratching=false);
+}
+
+/* KEY GAME */
+let lockStarted=false,keyIndex=0,keyFound=false;
+function initLockGame(){
+ if(lockStarted)return;
+ lockStarted=true;
+ const grid=document.getElementById("lockGrid");
+ grid.innerHTML="";
+ keyIndex=Math.floor(Math.random()*9);keyFound=false;
+ for(let i=0;i<9;i++){
+  const tile=document.createElement("div");
+  tile.className="lockTile";tile.textContent="🔒";
+  tile.addEventListener("click",()=>{
+   if(keyFound||tile.classList.contains("wrong"))return;
+   if(i===keyIndex){
+    tile.textContent="🗝️";tile.classList.add("correct");keyFound=true;
+    document.getElementById("lockStatus").textContent="You found the key! 🔓";
+    document.getElementById("letterNext").disabled=false;
+    poof(["🗝️","💗","✨"],65);
+   }else{
+    tile.textContent="❌";tile.classList.add("wrong");
+    document.getElementById("lockStatus").textContent="Not this one! Try another box.";
+    setTimeout(()=>{tile.textContent="🔒";tile.classList.remove("wrong")},650);
+   }
+  });
+  grid.appendChild(tile);
+ }
+}
+
+/* LETTER */
+let letterOpened=false;
+function openLetter(){
+ if(letterOpened)return;
+ letterOpened=true;
+ document.getElementById("envelope").classList.add("open");
+ poof(["💌","💗","🌷","✨"],60);
+ setTimeout(()=>{
+  document.getElementById("envelope").style.display="none";
+  document.getElementById("envelopeHint").textContent="A little message for you 💗";
+  document.getElementById("letter").style.display="block";
+  document.getElementById("letterContinue").style.display="inline-block";
+ },600);
+}
+
+/* SMILE TEST */
+let noCount=0;
+function smileNo(){
+ noCount++;
+ const yes=document.getElementById("yesSmile");
+ if(noCount===1){
+  document.getElementById("smileMessage").textContent="Are you sure? Please smile 🥺";
+  yes.style.transform="scale(1.3)";
+ }else{
+  document.getElementById("smileMessage").textContent="Come on, smile now! I made this with so much effort 🥺";
+  document.getElementById("noSmile").style.display="none";
+  yes.style.transform="scale(1.5)";
+ }
+}
+function smileYes(){
+ poof(["💗","🎀","🥳","✨","🌷"],100);
+ setTimeout(()=>showScreen(11),1100);
+}
+
+/* REPLAY */
+function replay(){
+ audio.pause();audio.currentTime=0;musicStarted=false;
+ musicControl.style.display="none";
+ document.getElementById("vinylNext").disabled=true;
+ record.style.display="block";record.removeAttribute("style");
+ platter.classList.remove("playing");tonearm.classList.remove("playing");
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById("screen1").classList.add("active");
+
+ questionIndex=0;
+ document.getElementById("questionText").textContent=questions[0];
+ document.getElementById("questionFeedback").textContent="Be honest! 👀";
+
+ candlesLeft=5;cakeCut=false;
+ document.querySelectorAll(".candle").forEach(c=>{
+  c.classList.remove("blown");
+  if(!c.querySelector(".flame")){
+   const f=document.createElement("span");f.className="flame";c.prepend(f);
+  }
+  c.querySelector(".smoke").classList.remove("show");
+ });
+ const area=document.getElementById("cakeArea");
+ area.classList.remove("cut","cutting");
+ document.getElementById("cakeStatus").textContent="5 candles still glowing! 🕯️";
+ document.getElementById("cutCake").style.display="inline-block";
+ document.getElementById("cutCake").disabled=true;
+ document.getElementById("cakeNext").style.display="none";
+
+ memeRevealed=false;
+ document.getElementById("revealButton").style.display="inline-block";
+ document.getElementById("revealBox").classList.remove("show");
+
+ createMemoryGame();
+ scratchStarted=false;scratchMoves=0;
+ const canvas=document.getElementById("scratchCanvas");
+ canvas.style.display="block";canvas.style.opacity="1";
+ document.getElementById("photoNext").disabled=true;
+ document.getElementById("scratchStatus").textContent="Scratch to reveal 💗";
+
+ lockStarted=false;
+ document.getElementById("letterNext").disabled=true;
+ letterOpened=false;
+ document.getElementById("envelope").style.display="block";
+ document.getElementById("envelope").classList.remove("open");
+ document.getElementById("letter").style.display="none";
+ document.getElementById("letterContinue").style.display="none";
+
+ noCount=0;
+ document.getElementById("noSmile").style.display="inline-block";
+ document.getElementById("yesSmile").style.transform="scale(1)";
+ document.getElementById("smileMessage").textContent="Tell me honestly! 💗";
+}
+</script>
+</body>
+</html>
